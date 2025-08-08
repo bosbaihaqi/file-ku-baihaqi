@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#06f" />
+  <title>RuwbiQ</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="shortcut icon" href="img/logo.png" />
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <!-- HEADER -->
+      <div class="header-illustration">
+        <div class="header-ornaments">
+          <div class="ornament"></div><div class="ornament"></div>
+          <div class="ornament"></div><div class="ornament"></div>
+          <div class="ornament"></div>
+        </div>
+        <div class="illustration-content">
+          <div class="illustration-text"></div>
+        </div>
+      </div>
+
+      <!-- TAB LOGIN -->
+      <div class="login-method">
+        <ul>
+          <li id="member" class="login-method-menu active">Member</li>
+          <li id="voucher" class="login-method-menu">Voucher</li>
+          <li id="paket" class="login-method-menu">Paket</li>
+        </ul>
+      </div>
+
+      <!-- TAB MEMBER -->
+      <div id="member-content" class="tab-content active">
+        <form action="$(link-login-only)" method="post" $(if chap-id) name="login" onsubmit="return doLogin()" $(endif)>
+          <input type="hidden" name="dst" value="$(link-orig)" />
+          <input type="hidden" name="popup" value="true" />
+          <div class="input-group">
+            <div class="input-icon">
+              <input class="input" type="text" name="username" id="member-username" placeholder="Username" required />
+              <i class="icon"></i>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="input-icon">
+              <input class="input" type="password" name="password" id="password" placeholder="Password" required />
+              <i class="icon"></i>
+            </div>
+            <a id="showPassword" class="btn btn-show-hide"><span id="showPasswordText">Show</span></a>
+          </div>
+          $(if error)<p class="error">$(error)</p>$(endif)
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+      </div>
+
+      <!-- TAB VOUCHER -->
+      <div id="voucher-content" class="tab-content">
+        <form action="$(link-login-only)" method="post" $(if chap-id) name="login" onsubmit="return doLogin()" $(endif)>
+          <input type="hidden" name="dst" value="$(link-orig)" />
+          <input type="hidden" name="popup" value="true" />
+          <div class="input-group">
+            <div class="input-icon">
+<input class="input" type="text" name="username" id="voucher-username" placeholder="Kode Voucher" required />
+              <i class="icon"></i>
+            </div>
+<input type="hidden" name="password" id="voucher-password" />
+          </div>
+          $(if error)<p class="error">$(error)</p>$(endif)
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+      </div>
+
+      <!-- TAB PAKET -->
+      <div id="paket-content" class="tab-content">
+        <div class="paket-container">
+          <p>Pilih paket hotspot sesuai kebutuhan Anda</p>
+          <div class="paket-scroll-container">
+            <div class="scroll-indicator left" id="scrollLeft">‹</div>
+            <div class="scroll-indicator right" id="scrollRight">›</div>
+            <div class="paket-list" id="paketList">
+               <div class="paket-card" onclick="selectPaket(this, 'Paket Basic', 2)">
+                <div class="paket-header">
+                  <div class="price">Rp4.000</div>
+                  <h3>Paket Basic</h3>
+                  <div class="duration">Durasi: 3 Jam</div>
+                </div>
+                <ul class="features">
+                  <li>Kecepatan Normal</li>
+                  <li>Cocok Buat Browsing</li>
+                  <li>Uploud up to 1000 KB</li>
+                  <li>Limit Quota Akses 4MB</li>
+                </ul>
+              </div>
+              <div class="paket-card" onclick="selectPaket(this, 'Paket Premium 1', 8000)">
+                <div class="paket-header">
+                  <div class="price">Rp8.000</div>
+                  <h3>Paket Premium 1</h3>
+                  <div class="duration">Durasi: 6 Jam</div>
+                </div>
+                <ul class="features">
+                  <li>Kecepatan Normal</li>
+                  <li>Cocok Buat Browsing</li>
+                  <li>Uploud up to 1000 KB</li>
+                  <li>Limit Quota Akses 6MB</li>
+                </ul>
+              </div>
+              <div class="paket-card" onclick="selectPaket(this, 'Paket Premium 2', 10000)">
+                <div class="paket-header">
+                  <div class="price">Rp10.000</div>
+                  <h3>Paket Premium 2</h3>
+                  <div class="duration">Durasi: 12 Jam</div>
+                </div>
+                <ul class="features">
+                  <li>Kecepatan Normal</li>
+                  <li>Cocok Buat Browsing</li>
+                  <li>Uploud up to 1000 KB</li>
+                  <li>Limit Quota Akses 8MB</li>
+                </ul>
+              </div>
+               <div class="paket-card" onclick="selectPaket(this, 'Paket VIP', 14000)">
+                <div class="paket-header">
+                  <div class="price">Rp14.000</div>
+                  <h3>Paket VIP</h3>
+                  <div class="duration">Durasi: 24 Jam</div>
+                </div>
+                <ul class="features">
+                  <li>Kecepatan Normal</li>
+                  <li>Cocok Buat Browsing</li>
+                  <li>Uploud up to 1000 KB</li>
+                  <li>Limit Quota Akses 10MB</li>
+                </ul>
+              </div>
+               <div class="paket-card" onclick="selectPaket(this, 'Paket VVIP', 16000)">
+                <div class="paket-header">
+                  <div class="price">Rp16.000</div>
+                  <h3>Paket VVIP</h3>
+                  <div class="duration">Durasi: 1 hari</div>
+                </div>
+                <ul class="features">
+                  <li>Kecepatan Normal</li>
+                  <li>Cocok Buat Browsing</li>
+                  <li>Uploud up to 1000 KB</li>
+                  <li>Limit Quota Akses 20MB</li>
+                </ul>
+            </div>
+            </div>
+            <div class="beli-paket-wrapper">
+        <button class="btn btn-primary" id="beliPaket" style="display: none;">Beli Paket Terpilih</button>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="form-footer">
+        $(if trial == 'yes')
+        <p>Coba Gratis? <a href="$(link-login-only)?dst=$(link-orig-esc)&username=T-$(mac-esc)">Klik di sini</a></p>
+        $(endif)
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAP HIDDEN -->
+  $(if chap-id)
+  <form name="sendin" action="$(link-login-only)" method="post" style="display: none;">
+    <input type="hidden" name="username" />
+    <input type="hidden" name="password" />
+    <input type="hidden" name="dst" value="$(link-orig)" />
+    <input type="hidden" name="popup" value="true" />
+  </form>
+  <script src="js/md5.js"></script>
+   <script>
+  function doLogin() {
+    this.preventDefault();
+    const isVoucherTab = document.getElementById('voucher').classList.contains('active');
+    const isMemberTab = document.getElementById('member').classList.contains('active');
+
+    
+    if (isVoucherTab) {
+      document.sendin.username.value = document.getElementById('voucher-username').value;
+      document.sendin.password.value = hexMD5("$(chap-id)" + document.getElementById('voucher-password').value + "$(chap-challenge)");
+    } else if (isMemberTab) {
+      document.sendin.username.value = document.getElementById('member-username').value;
+      document.sendin.password.value = hexMD5("$(chap-id)" + document.getElementById('password').value + "$(chap-challenge)");
+    }
+
+    console.log(document.sendin.username.value, document.sendin.password.value);
+    document.sendin.submit();
+    return false;
+  }
+
+  // Auto-sinkronisasi password saat mengetik voucher
+  document.addEventListener("DOMContentLoaded", () => {
+    const voucherInput = document.getElementById("voucher-username");
+    const passwordInput = document.getElementById("voucher-password");
+
+    if (voucherInput && passwordInput) {
+      voucherInput.addEventListener("input", () => {
+        passwordInput.value = voucherInput.value;
+      });
+    }
+  });
+</script>
+
+  $(endif)
+
+  <script src="js/loginScript.js"></script>
+</body>
+</html>

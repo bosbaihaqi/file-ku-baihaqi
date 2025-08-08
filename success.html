@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Berhasil | Ruang WiFi</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
+      body {
+        background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+        animation: fadeIn 1s ease;
+      }
+
+      .card {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 1rem;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        color: #0f172a;
+        animation: slideUp 0.8s ease-out;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        color: #0284c7;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #ddd;
+        border-top: 4px solid #0284c7;
+        border-radius: 50%;
+        margin: 0 auto;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      .footer {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: #64748b;
+      }
+    </style>
+
+    $(if refresh-timeout)
+    <script>
+      setTimeout(function () {
+        location.href = "$(link-status)";
+      }, 3000);
+    </script>
+    $(endif)
+  </head>
+  <body>
+    <div class="card">
+      $(if login-by == 'trial')
+      <h1>Selamat Datang Trial User!</h1>
+      $(elif login-by != 'mac')
+      <h1>Selamat Datang, $(username)!</h1>
+      $(endif)
+
+      <p>Login berhasil. Kamu akan diarahkan ke halaman status...</p>
+      <div class="spinner"></div>
+
+   
+    </div>
+    <script>
+      document.title = `Login Berhasil | ${window.location.hostname}`;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Berhasil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .success-container {
+            text-align: center;
+            color: white;
+        }
+
+        .checkmark-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            animation: scaleIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            transform: scale(0);
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+        }
+
+        .checkmark-path {
+            stroke: #1e88e5;
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawCheckmark 1.2s ease-in-out 0.8s forwards;
+        }
+
+        .success-text {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1.5s forwards;
+        }
+
+        .success-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .demo-controls {
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 2s forwards;
+        }
+
+        .demo-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .demo-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes drawCheckmark {
+            0% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Reset classes */
+        .reset-circle {
+            animation: none !important;
+            transform: scale(0) !important;
+            opacity: 0 !important;
+        }
+
+        .reset-checkmark {
+            stroke-dashoffset: 100 !important;
+            animation: none !important;
+        }
+
+        .reset-text {
+            opacity: 0 !important;
+            animation: none !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .checkmark-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .circle {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .checkmark {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .success-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="checkmark-container">
+            <div class="circle" id="circle">
+                <div class="checkmark">
+                    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                        <path class="checkmark-path" id="checkmarkPath" d="M15 30 L25 40 L45 20"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="success-text" id="successText">
+            <h1 class="success-title">Pembayaran Berhasil!</h1>
+        </div>
+        
+        
+    <script>
+        function playAnimation() {
+            const circle = document.getElementById('circle');
+            const checkmarkPath = document.getElementById('checkmarkPath');
+            const successText = document.getElementById('successText');
+            
+            // Reset semua elemen
+            circle.classList.add('reset-circle');
+            checkmarkPath.classList.add('reset-checkmark');
+            successText.classList.add('reset-text');
+            
+            // Restart animasi setelah delay singkat
+            setTimeout(() => {
+                circle.classList.remove('reset-circle');
+                checkmarkPath.classList.remove('reset-checkmark');
+                successText.classList.remove('reset-text');
+                
+                // Reset dan restart CSS animations
+                circle.style.animation = 'none';
+                checkmarkPath.style.animation = 'none';
+                successText.style.animation = 'none';
+                
+                // Force reflow
+                circle.offsetHeight;
+                
+                // Restart animations
+                circle.style.animation = 'scaleIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+                checkmarkPath.style.animation = 'drawCheckmark 1.2s ease-in-out 0.8s forwards';
+                successText.style.animation = 'fadeInUp 0.8s ease-out 1.5s forwards';
+            }, 100);
+        }
+
+        // Auto play saat halaman dimuat
+        window.addEventListener('load', () => {
+            setTimeout(playAnimation, 300);
+        });
+
+        // Play sound effect
+        function playSuccessSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime);
+                oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.2);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (error) {
+                console.log('Audio tidak didukung');
+            }
+        }
+
+        // Play sound saat animasi centang selesai
+        setTimeout(() => {
+            playSuccessSound();
+        }, 2000);
+        // Redirect otomatis ke history.html setelah animasi selesai
+// Bersihkan URL dari ?ref=... setelah dibaca
+    window.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const ref = urlParams.get("ref");
+
+      if (ref) {
+        // Simpan ref ke sessionStorage agar tetap bisa dipakai setelah dibersihkan
+        sessionStorage.setItem("ref_merchant", ref);
+
+        // Hapus query ?ref=... dari URL (tanpa reload)
+        if (window.history.replaceState) {
+          const cleanURL = window.location.origin + window.location.pathname;
+          window.history.replaceState({}, document.title, cleanURL);
+        }
+      }
+    });
+  // dari 3500 → 2000 ms
+            setTimeout(() => {
+            const ref = sessionStorage.getItem("ref_merchant");
+            if (ref) {
+                window.location.href = `history.html?ref=${ref}`;
+            } else {
+                window.location.href = "history.html";
+            }
+            }, 2000);
+
+
+    </script>
+</body>
+</html>

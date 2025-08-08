@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="refresh" content="2; url=$(link-orig)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="expires" content="-1" />
+    <title>Login Berhasil - Ruang WiFi</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #d0f0ff, #ffffff);
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .checkmark {
+        font-size: 80px;
+        color: #06f;
+        animation: pop 0.5s ease-out;
+      }
+
+      h2 {
+        margin-top: 20px;
+        color: #06f;
+        font-size: 22px;
+      }
+
+      p {
+        font-size: 14px;
+        color: #555;
+        margin-top: 10px;
+      }
+
+      a {
+        color: #0077ff;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      @keyframes pop {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+    <script>
+      var popup = "";
+      function openOrig() {
+        if (window.focus) popup.focus();
+        location.href = unescape("$(link-orig-esc)");
+      }
+      function openAd() {
+        location.href = unescape("$(link-redirect-esc)");
+      }
+      function openAdvert() {
+        if (window.name != "hotspot_advert") {
+          popup = open("$(link-redirect)", "hotspot_advert", "");
+          setTimeout("openOrig()", 1000);
+          return;
+        }
+        setTimeout("openAd()", 1000);
+      }
+    </script>
+  </head>
+  <body onload="openAdvert()">
+    <div class="checkmark">✅</div>
+    <h2>Login Berhasil</h2>
+    <p>Mengarahkan ke internet...</p>
+    <p>
+      Jika tidak otomatis, buka
+      <a href="$(link-redirect)" target="hotspot_advert">iklan ini</a> secara manual.
+    </p>
+  </body>
+</html>

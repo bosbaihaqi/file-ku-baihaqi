@@ -1,0 +1,206 @@
+/* Reset & dasar */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #e0f7ff, #f9fbfc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  padding-bottom: 24px;
+  overflow: hidden;
+}
+
+/* Header sukses */
+/* Header sukses */
+.success-header {
+  padding: 32px 24px 24px;
+  text-align: center;
+  background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+  border-radius: 16px; /* Lebih melengkung di semua sisi */
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin: 16px;
+  border: none;
+}
+
+/* Ornamen lingkaran transparan */
+.success-header::before,
+.success-header::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.success-header::before {
+  width: 120px;
+  height: 120px;
+  top: -20px;
+  left: -30px;
+}
+
+.success-header::after {
+  width: 140px;
+  height: 140px;
+  bottom: -30px;
+  right: -40px;
+}
+
+
+.checkmark {
+  width: 64px;
+  height: 64px;
+  background: white;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkmark svg {
+  width: 34px;
+  height: 34px;
+  stroke: #38bdf8;
+  stroke-width: 3;
+  fill: none;
+}
+.success-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.success-subtitle {
+  font-size: 14px;
+  opacity: 0.95;
+  margin-top: 2px;
+}
+
+/* Detail pembayaran */
+.payment-details {
+  background: #f1f5f9;
+  padding: 16px;
+  margin: 20px 20px 0;
+  border-radius: 16px;
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+.detail-label {
+  font-weight: 600;
+  color: #334155;
+}
+.detail-value {
+  font-weight: 500;
+  color: #0f172a;
+  text-align: right;
+}
+
+/* Kode voucher */
+
+.card {
+  background: #f1f5f9;
+  padding: 16px;
+  margin: 24px 20px 0;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.voucher-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.vhoucer-number,
+.voucher-number {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  background: #e0f2fe;
+  padding: 10px 16px;
+  border-radius: 12px;
+  margin-top: 10px;
+  display: inline-block;
+  width: auto;
+  word-break: break-all;
+}
+
+.label {
+  font-weight: 500;
+  color: #475569;
+}
+
+
+/* Tombol aksi */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 20px 0;
+}
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn-primary {
+  background-color: #0ea5e9;
+  color: white;
+}
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Responsif tombol */
+@media (min-width: 500px) {
+  .action-buttons {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.notif-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4CAF50;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 1; transform: translateX(-50%) translateY(0); }
+  to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}

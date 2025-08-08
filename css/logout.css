@@ -1,0 +1,508 @@
+/* Reset dan Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(to bottom right, #e0f7ff, #f9fbfc);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #333;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background ornaments */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+/* Container utama */
+.container {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Wrapper card */
+.wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 28px;
+  padding: 0;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border: none;
+  overflow: hidden;
+  position: relative;
+  animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero header dengan gradient biru */
+.title-wrapper {
+ padding: 32px 24px 24px;
+  text-align: center;
+  background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+  border-radius: 16px; /* Lebih melengkung di semua sisi */
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin: 16px;
+  border: none;
+}
+
+/* Ornamen pada header */
+.title-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+  animation: rotate 30s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.title-wrapper h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.5px;
+}
+
+.title-wrapper p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+}
+
+.title-wrapper p strong {
+  color: white;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+}
+
+/* Content section */
+.content-section {
+  padding: 32px;
+}
+
+/* Table styles dengan desain modern */
+table {
+  width: 100%;
+  margin: 0 0 32px 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08);
+}
+
+table tr {
+  transition: all 0.3s ease;
+}
+
+table tr:hover {
+  background: rgba(59, 130, 246, 0.03);
+  transform: translateX(4px);
+}
+
+table th {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  padding: 18px 20px;
+  font-weight: 700;
+  color: #1e40af;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  width: 40%;
+  text-align: left;
+  border-bottom: 2px solid #3b82f6;
+  position: relative;
+}
+
+table th::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+}
+
+table td {
+  padding: 18px 20px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 15px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.08);
+  background: white;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Form styles */
+form {
+  margin: 0;
+  text-align: center;
+}
+
+/* Button dengan desain modern */
+.btn {
+  display: inline-block;
+  padding: 18px 40px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 180px;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 50%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 
+    0 12px 24px rgba(59, 130, 246, 0.3),
+    0 0 0 0 rgba(59, 130, 246, 0.5);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 16px 32px rgba(59, 130, 246, 0.4),
+    0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+  transition: all 0.1s;
+}
+
+/* Ripple effect */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.btn:active::before {
+  width: 400px;
+  height: 400px;
+}
+
+/* Footer */
+.form-footer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(59, 130, 246, 0.1);
+  text-align: center;
+}
+
+.copy-right {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0;
+  font-weight: 500;
+}
+
+.copy-right a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.copy-right a:hover {
+  color: #1d4ed8;
+}
+
+.copy-right a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 50%;
+  background: #3b82f6;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.copy-right a:hover::after {
+  width: 100%;
+}
+
+/* Responsive design untuk mobile */
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+  
+  .container {
+    max-width: 100%;
+  }
+  
+  .wrapper {
+    border-radius: 24px;
+    margin: 0;
+  }
+  
+  .title-wrapper {
+    padding: 32px 24px;
+  }
+  
+  .title-wrapper h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .title-wrapper p {
+    font-size: 15px;
+  }
+  
+  .content-section {
+    padding: 24px;
+  }
+  
+  table th,
+  table td {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+  
+  table th {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  
+  .btn {
+    padding: 16px 32px;
+    font-size: 15px;
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+  
+  .title-wrapper {
+    padding: 28px 20px;
+  }
+  
+  .title-wrapper h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+  
+  .title-wrapper p {
+    font-size: 14px;
+  }
+  
+  .content-section {
+    padding: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+  
+  table th {
+    font-size: 10px;
+    padding: 14px;
+  }
+  
+  .btn {
+    padding: 14px 28px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  
+  .form-footer {
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+  
+  .copy-right {
+    font-size: 12px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .title-wrapper h1 {
+    font-size: 22px;
+  }
+  
+  .title-wrapper p {
+    font-size: 13px;
+  }
+  
+  table th,
+  table td {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Animasi masuk */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Loading state */
+.btn.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 1;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhance glass effect */
+.wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 28px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Smooth scrolling untuk mobile */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Touch optimization */
+.btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Landscape mobile optimization */
+@media (max-height: 600px) and (orientation: landscape) {
+  body {
+    padding: 8px;
+  }
+  
+  .title-wrapper {
+    padding: 24px 20px;
+  }
+  
+  .title-wrapper h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  
+  .content-section {
+    padding: 16px 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 10px 14px;
+  }
+}

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voucher WiFi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffdde1, #ffffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+    }
+
+    /* Voucher */
+    .voucher {
+      position: relative;
+      display: flex;
+      background: linear-gradient(135deg, #ff6b9d, #ff9ec7, #ffb6c1, #ffffff);
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(255, 105, 157, 0.3), 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .voucher::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 3px;
+      background: linear-gradient(135deg, #ff6b9d, #ff9ec7, #ffb6c1, #ffffff);
+      border-radius: inherit;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      z-index: -1;
+    }
+    .voucher:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    }
+
+    /* SVG Ornament Background */
+    .voucher::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><rect x="50" y="40" width="200" height="200" fill="rgba(255,255,255,0.25)" /><rect x="400" y="60" width="150" height="150" fill="rgba(255,255,255,0.25)" /><rect x="800" y="20" width="220" height="220" fill="rgba(255,255,255,0.25)" /><rect x="1150" y="90" width="180" height="180" fill="rgba(255,255,255,0.25)" /><rect x="200" y="220" width="90" height="90" fill="rgba(255,255,255,0.18)" /><rect x="500" y="160" width="120" height="120" fill="rgba(255,255,255,0.18)" /><rect x="950" y="180" width="100" height="100" fill="rgba(255,255,255,0.18)" /><rect x="1250" y="200" width="80" height="80" fill="rgba(255,255,255,0.18)" /><rect x="100" y="280" width="50" height="50" fill="rgba(255,255,255,0.12)" /><rect x="360" y="260" width="40" height="40" fill="rgba(255,255,255,0.12)" /><rect x="700" y="250" width="60" height="60" fill="rgba(255,255,255,0.12)" /><rect x="1080" y="260" width="50" height="50" fill="rgba(255,255,255,0.12)" /><rect x="1350" y="280" width="40" height="40" fill="rgba(255,255,255,0.12)" /><rect x="600" y="100" width="180" height="180" fill="rgba(255,255,255,0.08)" /><rect x="300" y="40" width="140" height="140" fill="rgba(255,255,255,0.08)" /><rect x="1000" y="60" width="160" height="160" fill="rgba(255,255,255,0.08)" /></svg>') no-repeat center/cover;
+      z-index: 0;
+      opacity: 1;
+    }
+
+    /* Stub kiri */
+    .stub {
+      position: relative;
+      z-index: 1;
+      width: 80px;
+      background: linear-gradient(135deg, #ff6b9d, #ff9ec7, #ffb6c1);
+      border-radius: 13px 0 0 13px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 6px;
+      box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.3);
+    }
+    .stub-logo img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      padding: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .stub-text {
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      text-align: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      margin-bottom: 5px;
+    }
+
+    /* Garis perforasi */
+    .perforated-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 80px;
+      width: 2px;
+      background: repeating-linear-gradient(
+        to bottom,
+        #fff 0px,
+        #fff 4px,
+        transparent 4px,
+        transparent 8px
+      );
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    /* Main voucher */
+    .main-voucher {
+      flex: 1;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto 1fr;
+      gap: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Harga */
+    .price {
+      grid-column: 2;
+      grid-row: 1;
+      background: linear-gradient(135deg, #ff6b9d, #ff9ec7, #ffb6c1);
+      color: #fff;
+      font-size: 13px;
+      border-radius: 12px;
+      padding: 5px 10px;
+      text-align: center;
+      justify-self: end;
+      font-weight: 700;
+      box-shadow: 0 3px 8px rgba(255, 105, 157, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      position: relative;
+    }
+    .price::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    }
+
+    /* Username & password */
+    .credentials {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .credential-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .credential-label {
+      font-weight: 600;
+      font-size: 12px;
+      color: #495057;
+    }
+    .credential-value {
+      flex: 1;
+      background: linear-gradient(135deg, #ffffff, #fff5f8);
+      padding: 4px 8px;
+      border: 1px solid #ffd6e8;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-weight: 600;
+      box-shadow: inset 0 1px 3px rgba(255, 105, 157, 0.1);
+    }
+
+    /* Kadaluarsa */
+    .expiration {
+      grid-column: 1;
+      grid-row: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .expiration-label {
+      font-weight: 600;
+      font-size: 11px;
+      color: #495057;
+      background: linear-gradient(135deg, #fff5f8, #ffeef2);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid #ffd6e8;
+      text-align: center;
+      box-shadow: inset 0 1px 2px rgba(255, 105, 157, 0.1);
+    }
+    .expiration-value {
+      font-weight: 600;
+      font-size: 11px;
+      color: #dc3545;
+      background: linear-gradient(135deg, #fff, #fff5f8);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid #fecaca;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      box-shadow: inset 0 1px 2px rgba(255, 105, 157, 0.1);
+    }
+
+    /* Info paket */
+    .package-info {
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-end;
+    }
+    .package-label {
+      font-weight: 700;
+      font-size: 10px;
+      color: #ff6b9d;
+      background: linear-gradient(135deg, #fff5f8, #ffeef2);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid #ffd6e8;
+      box-shadow: inset 0 1px 2px rgba(255, 105, 157, 0.1);
+    }
+    .package-duration {
+      font-weight: 700;
+      font-size: 11px;
+      color: #ff6b9d;
+      background: linear-gradient(135deg, #ffffff, #fff5f8);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid #ffd6e8;
+      text-align: center;
+      box-shadow: inset 0 1px 2px rgba(255, 105, 157, 0.1);
+    }
+
+    /* Status */
+    .status-button {
+      grid-column: 2;
+      grid-row: 3;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      justify-self: end;
+      align-self: end;
+    }
+    .status-button.aktif {
+      background: linear-gradient(135deg, #28a745, #20c997, #40e0d0);
+      box-shadow: 0 3px 8px rgba(40, 167, 69, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    }
+    .status-button.nonaktif {
+      background: linear-gradient(135deg, #6c757d, #adb5bd, #ced4da);
+      box-shadow: 0 3px 8px rgba(108, 117, 125, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    }
+    .status-button.expired {
+      background: linear-gradient(135deg, #dc3545, #fd7e14, #ff6b6b);
+      box-shadow: 0 3px 8px rgba(220, 53, 69, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Responsif */
+    @media (max-width: 400px) {
+      .stub-text {
+        font-size: 11px;
+      }
+      .credential-label,
+      .credential-value,
+      .expiration-label,
+      .expiration-value {
+        font-size: 9px;
+      }
+      .price {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+      .status-button {
+        font-size: 9px;
+        padding: 3px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="voucher">
+      <!-- Stub kiri -->
+      <div class="stub">
+        <div class="stub-logo">
+          <img src="payreless.png" alt="Logo">
+        </div>
+        <div class="stub-text" data-variable="nama_merchant">Ruangwifi</div>
+      </div>
+
+      <!-- Garis perforasi -->
+      <div class="perforated-line"></div>
+
+      <!-- Isi voucher -->
+      <div class="main-voucher">
+        <div class="price" data-variable="price">#price#</div>
+        
+        <div class="credentials">
+          <div class="credential-row">
+            <span class="credential-label">Username:</span>
+            <span class="credential-value" data-variable="username">#username#</span>
+          </div>
+          <div class="credential-row">
+            <span class="credential-label">Password:</span>
+            <span class="credential-value" data-variable="password">#password#</span>
+          </div>
+        </div>
+
+        <div class="expiration">
+          <div class="expiration-label">Kadaluarsa:</div>
+          <div class="expiration-value" data-variable="expired">#expired#</div>
+        </div>
+
+        <div class="package-info">
+          <div class="package-label">PAKET VOUCHER</div>
+          <div class="package-duration" data-variable="durasi">#durasi#</div>
+        </div>
+
+        <div class="status-button aktif" data-variable="status">AKTIF</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
